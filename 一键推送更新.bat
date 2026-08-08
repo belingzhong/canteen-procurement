@@ -12,7 +12,9 @@ echo.
 
 echo [1/4] 正在同步文件到Git仓库...
 copy /y "%SKILLS%\食堂采购.html" "%PROJECT%\canteen-procurement.html" >nul
-echo 已同步：食堂采购.html
+echo 已同步：食堂采购.html ^(PC端^)
+copy /y "%SKILLS%\食堂采购-app.html" "%PROJECT%\canteen-procurement-app.html" >nul
+echo 已同步：食堂采购-app.html ^(App端^)
 
 echo.
 echo [2/4] 正在检查文件变更...
