@@ -2183,13 +2183,15 @@ function doAction(type) {
   var titles = { pass:'请确认是否提交', reject:'请确认是否驳回', submit:'确认提交', order:'请确认是否提交？', receipt:'确认收货' };
   var bodies = { pass:'提交后，需求将给到总部进行采购。', reject:'提交后，需求将回到' + (item.org||'总部') + '食堂组织进行调整。', submit:'确认后将不可撤回，确定要提交吗？', order:'提交后，将完成下单确认。', receipt:'确认收货后订单将标记为已完成，确定要收货吗？' };
   var isDanger = (type === 'reject');
-  var showInput = false;
+  var showInput = (type === 'reject');
   var btnText = (type === 'order') ? '确认' : '确定';
 
   var modal = '<div class="modal-overlay" onclick="closeModal()"><div class="modal" onclick="event.stopPropagation()">';
   modal += '<div class="modal-hd">' + titles[type] + '</div><div class="modal-bd">';
   if (showInput) {
-    modal += '<textarea id="modalComment" placeholder="请输入审批意见（选填）"></textarea>';
+    modal += '<p style="font-size:14px;color:var(--text-secondary);padding:4px 0;">' + (bodies[type] || '确认执行此操作？') + '</p>';
+    modal += '<div style="text-align:left;margin-top:12px;"><span style="font-size:12px;color:var(--text-secondary);"><span style="color:red;">*</span> 驳回原因</span>';
+    modal += '<textarea id="modalComment" placeholder="请输入驳回原因" style="width:100%;height:60px;margin-top:4px;border:1px solid var(--border);border-radius:4px;padding:8px;font-size:13px;resize:none;"></textarea></div>';
   } else {
     modal += '<p style="font-size:14px;text-align:center;color:var(--text-secondary);padding:4px 0;">' + (bodies[type] || '确认执行此操作？') + '</p>';
   }

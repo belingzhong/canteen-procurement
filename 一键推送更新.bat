@@ -1,7 +1,8 @@
 ﻿@echo off
 chcp 65001 >nul
-cd /d "%~dp0"
 
+set SKILLS=C:\Users\Administrator\.trae-cn\skills\04-交互原型生成器\原型\食堂采购
+set PROJECT=C:\Users\Administrator\AppData\Roaming\TRAE SOLO CN\ModularData\ai-agent\work-mode-projects\6a69a3d1222c67d95ca3f50a\canteen-procurement
 set GIT=C:\Users\Administrator\.trae-cn\work\6a69a3d1222c67d95ca3f50d\MinGit\cmd\git.exe
 
 echo ========================================
@@ -9,27 +10,30 @@ echo   食堂采购系统 - 一键推送至 GitHub
 echo ========================================
 echo.
 
-echo [1/3] 正在检查文件变更...
+echo [1/4] 正在同步文件到Git仓库...
+copy /y "%SKILLS%\食堂采购.html" "%PROJECT%\canteen-procurement.html" >nul
+echo 已同步：食堂采购.html
+
+echo.
+echo [2/4] 正在检查文件变更...
+cd /d "%PROJECT%"
 "%GIT%" status --short
 if %errorlevel% neq 0 (
-    echo 错误：无法检查文件状态，请确认 Git 是否正常
+    echo 错误：无法检查文件状态
     pause
     exit /b 1
 )
 
 echo.
-echo [2/3] 正在提交变更...
+echo [3/4] 正在提交变更...
 "%GIT%" add .
 "%GIT%" commit -m "更新 - %date% %time%"
 if %errorlevel% neq 0 (
-    echo 没有文件变更或提交失败，跳过推送
-    echo.
-    pause
-    exit /b 0
+    echo 没有文件变更或提交失败
 )
 
 echo.
-echo [3/3] 正在推送至 GitHub...
+echo [4/4] 正在推送至 GitHub...
 "%GIT%" push github master
 if %errorlevel% equ 0 (
     echo.
