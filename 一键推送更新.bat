@@ -47,7 +47,7 @@ if %errorlevel% equ 0 (
     echo   访问地址：
     echo   PC端：https://belingzhong.github.io/canteen-procurement/canteen-procurement.html
     echo   App端：https://belingzhong.github.io/canteen-procurement/canteen-procurement-app.html
-    echo   PRD：https://belingzhong.github.io/canteen-procurement/食堂采购系统-迭代PRD-v2.1.docx
+    echo   PRD：https://github.com/belingzhong/canteen-procurement/blob/master/食堂采购系统-迭代PRD-v2.1.docx
     echo ========================================
 ) else (
     echo.
